@@ -1,2 +1,2 @@
 # django-project
-My first django project
+My django project,django version=1.8.
