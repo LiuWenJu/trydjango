@@ -18,26 +18,31 @@
   </head>
 
   <body>
-  {# verbatim #}
   {% include 'navbar.html' %}
 
 
-    <div class="container">
-    {% block jumbotron %}
- <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
+    <div class="container-fluid">
+            {% block jumbotron %}
+            <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
         {% block jumbotron_content %}
-           {% endblock %}
-      </div>
 
-    {% endblock %}
-    {% block content %}
+        {% endblock %}
+        </div>
+            {% endblock %}
 
-    {% endblock %}
+
+
+          
+            {% block content %}
+
+            {% endblock %}
+              
 
     </div> <!-- /container -->
 
     {% include "javascript.html" %}
-
+    
+    
   </body>
 </html>
