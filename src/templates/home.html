@@ -24,6 +24,7 @@
      
 {% block jumbotron %}
 
+{% if not request.user.is_authenticated %}
 <div class="jumbotron">
  <div class="container">
 	<div class="row">
@@ -40,12 +41,35 @@
 		</div>
 	</div>
  </div>
+
+
+{% endif %}
+
+
 {% endblock %}
 
 
 
 
 {% block content %}
+{% if request.user.is_authenticated %}
+
+<h1>Congratulations!You are logged in!</h1>
+
+{% if queryset %}
+<h2>Welcome Staff</h2>
+<table class='table'>
+{% for instance in queryset %}
+<tr><td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td> {{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr> 
+{% if instance.email == "abc@gmail.edu" %}
+<tr><td>is equal</td></tr>
+{% endif %}
+
+{% endfor %}
+</table>
+
+{% endif %}
+{% else %}
 <div class="row">
 
   <div class="col-sm-3 pull-right">
@@ -61,13 +85,13 @@
 	</div>
 
 	<div class='col-sm-3'>
-<p class='lead text-align-center'>Built with Django &amp; Bootstrap</p>
+<p class='lead text-align-center'>Django &amp; Bootstrap</p>
 <img src='{% static "img/marked1.jpg" %}' class='img-responsive' />
 
 </div>
 
 <div class='col-sm-3'>
-<p class='lead text-align-center'>Created for Starters of all kinds.
+<p class='lead text-align-center'>Created for Starters .
 <br/>
 <span class='fa-stack fa-lg fa-5x'>
     <i class='fa fa-comment-o fa-stack-2x'></i>
@@ -80,7 +104,7 @@
 <div class='col-sm-3'>
     <p class='lead text-align-center'>Always Open Source <br/></br>
     <span class="fa-stack fa-lg fa-5x">
-    <i class="fa fa-circle-o-notch fa-stack-2x fa-spin"></i>
+    <i class="fa fa-circle-o-notch fa-stack-2x "></i>
     <i class="fa fa-github fa-stack-1x"></i>
 </span>
 </p>
@@ -89,5 +113,7 @@
 
 </div>
 
+
+{% endif %}
 
 {% endblock %}
